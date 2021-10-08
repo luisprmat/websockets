@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Comment;
 use App\Models\Post;
 use Livewire\Component;
 
