@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Livewire\ShowPost;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +20,5 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::get('posts/{post}', ShowPost::class); //TODO Show posts to guest users
 });
-
-Route::resource('posts', PostController::class);
