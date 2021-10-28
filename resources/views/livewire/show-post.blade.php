@@ -10,7 +10,7 @@
             <h1 class="text-2xl mb-2">{{ $post->title }}</h1>
             <p class="text-sm text-gray-500">
                 {{ $post->updated_at }}
-                <span class="text-gray-700 italic">By {{ $post->user->name }}</span>
+                <span class="text-gray-700 italic">Por {{ $post->user->name }}</span>
                 @if ($post->published)
                     <span
                         class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -34,7 +34,7 @@
                         rows="3" placeholder="Dejar un comentario ..."></textarea>
                     <x-jet-input-error for="newComment" />
                 @else
-                    <p>¡Usted debe estar logeado para enviar un comentario! <a href="{{ route('login') }}">Login</a></p>
+                    <p>¡Usted debe estar logueado para enviar un comentario! <a href="{{ route('login') }}">Login</a></p>
                 @endauth
             </div>
             <x-jet-button type="button" wire:click="store">
@@ -44,15 +44,15 @@
             {{-- Comments --}}
             @if ($comments->count())
                 <hr class="mt-4">
-                @foreach ($comments as $comment)
+                @foreach ($comments as $item)
                     <div class="mt-3 flex items-center justify-between text-sm bg-white overflow-hidden">
                         <div>
-                            <img class="h-10 w-10 rounded-full" src="{{ $comment->user->profile_photo_url }}"
-                                alt="{{ $comment->user->name }}">
+                            <img class="h-10 w-10 rounded-full" src="{{ $item->user->profile_photo_url }}"
+                                alt="{{ $item->user->name }}">
                         </div>
                         <div class="ml-3 flex-1 items-center justify-between text-sm border border-gray-200 rounded-md">
                             <div class="p-3 text-sm text-gray-500">
-                                {{ $comment->body }}
+                                {{ $item->body }}
                             </div>
                         </div>
                     </div>
@@ -60,4 +60,17 @@
             @endif
         </div>
     </div>
+    {{-- @push('events')
+        @php
+            $channel = "post-{$post->id}";
+        @endphp
+        <script>
+            Echo.channel('{{ $channel }}')
+                .listen('CommentSent', comment => {
+                    console.log('Mensaje enviado')
+                    alert('Escuchando '+comment.body)
+                    Livewire.emit('refreshComments', comment)
+                })
+        </script>
+    @endpush --}}
 </div>
