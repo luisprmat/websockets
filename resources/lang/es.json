@@ -170,6 +170,7 @@
     "Update your account's profile information and email address.": "Actualice la información de su cuenta y la dirección de correo electrónico",
     "Use a recovery code": "Use un código de recuperación",
     "Use an authentication code": "Use un código de autenticación",
+    "User": "Usuario",
     "Verify Email Address": "Confirme su correo electrónico",
     "We were unable to find a registered user with this email address.": "No pudimos encontrar un usuario registrado con esta dirección de correo electrónico.",
     "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.": "Cuando la autenticación de dos factores esté habilitada, le pediremos un token aleatorio seguro durante la autenticación. Puede recuperar este token desde la aplicación Google Authenticator de su teléfono.",

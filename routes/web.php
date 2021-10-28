@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\ShowPost;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::middleware(['auth:sanctum', 'verified'])->group(function () {});
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
-    Route::get('posts/{post}', ShowPost::class); //TODO Show posts to guest users
-});
+Route::view('/', 'dashboard')->name('dashboard');
+Route::get('posts/{post}', [PostController::class, 'show']);
