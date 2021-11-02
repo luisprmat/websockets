@@ -1,7 +1,7 @@
 <div>
-    @if ($post->comments->count())
+    @if (isset($comments) && $comments->count())
         <hr class="mt-4">
-        @foreach ($post->comments as $item)
+        @foreach ($comments as $item)
             <div class="mt-3 flex items-center justify-between text-sm bg-white overflow-hidden">
                 <div>
                     <img class="h-10 w-10 rounded-full" src="{{ $item->user->profile_photo_url }}"
@@ -15,4 +15,18 @@
             </div>
         @endforeach
     @endif
+{{--
+    @push('events')
+    @php
+        $channel = "post-{$postId}";
+        @endphp
+        <script>
+            Echo.channel('{{ $channel }}')
+                .listen('CommentSent', comment => {
+                    console.log('Mensaje enviado')
+                    alert('Escuchando '+comment.body)
+                    Livewire.emit('comment-added-from-network', comment)
+                })
+        </script>
+    @endpush --}}
 </div>

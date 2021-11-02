@@ -13,7 +13,8 @@ class ShowComments extends Component
     {
         return [
             'comment-added' => 'refresh',
-            "echo:post-{$this->post->id},CommentSent" => 'refresh',
+            'comment-added-from-network' => 'refresh',
+            // "echo:post-{$this->post->id},CommentSent" => 'refresh',
         ];
     }
 
@@ -24,6 +25,12 @@ class ShowComments extends Component
 
     public function render()
     {
-        return view('livewire.show-comments');
+        $postId = $this->post->id;
+        $comments = $this->post->comments()
+            ->with('user')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('livewire.show-comments', compact('comments', 'postId'));
     }
 }

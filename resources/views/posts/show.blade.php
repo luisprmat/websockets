@@ -36,38 +36,19 @@
                     @endauth
                     <livewire:show-comments :post="$post" />
                 </div>
-
-                {{-- Comments --}}
-                {{-- @if ($comments->count())
-                    <hr class="mt-4">
-                    @foreach ($comments as $item)
-                        <div class="mt-3 flex items-center justify-between text-sm bg-white overflow-hidden">
-                            <div>
-                                <img class="h-10 w-10 rounded-full" src="{{ $item->user->profile_photo_url }}"
-                                    alt="{{ $item->user->name }}">
-                            </div>
-                            <div class="ml-3 flex-1 items-center justify-between text-sm border border-gray-200 rounded-md">
-                                <div class="p-3 text-sm text-gray-500">
-                                    {{ $item->body }}
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif --}}
             </div>
         </div>
-        {{-- @push('events')
+
+        @push('events')
             @php
                 $channel = "post-{$post->id}";
             @endphp
             <script>
                 Echo.channel('{{ $channel }}')
                     .listen('CommentSent', comment => {
-                        console.log('Mensaje enviado')
-                        alert('Escuchando '+comment.body)
-                        Livewire.emit('refreshComments', comment)
+                        Livewire.emitTo('show-comments', 'comment-added-from-network', comment)
                     })
             </script>
-        @endpush --}}
+        @endpush
     </div>
 </x-app-layout>
