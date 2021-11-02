@@ -13,8 +13,8 @@ class ShowComments extends Component
     {
         return [
             'comment-added' => 'refresh',
-            'comment-added-from-network' => 'refresh',
-            // "echo:post-{$this->post->id},CommentSent" => 'refresh',
+            // 'comment-added-from-network' => 'refresh',
+            "echo:post-{$this->post->id},CommentSent" => 'refresh',
         ];
     }
 

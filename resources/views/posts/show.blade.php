@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        @push('events')
+        {{-- @push('events')
             @php
                 $channel = "post-{$post->id}";
             @endphp
@@ -49,6 +49,6 @@
                         Livewire.emitTo('show-comments', 'comment-added-from-network', comment)
                     })
             </script>
-        @endpush
+        @endpush --}}
     </div>
 </x-app-layout>

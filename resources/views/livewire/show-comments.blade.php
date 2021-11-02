@@ -15,18 +15,4 @@
             </div>
         @endforeach
     @endif
-{{--
-    @push('events')
-    @php
-        $channel = "post-{$postId}";
-        @endphp
-        <script>
-            Echo.channel('{{ $channel }}')
-                .listen('CommentSent', comment => {
-                    console.log('Mensaje enviado')
-                    alert('Escuchando '+comment.body)
-                    Livewire.emit('comment-added-from-network', comment)
-                })
-        </script>
-    @endpush --}}
 </div>
