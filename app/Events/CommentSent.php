@@ -34,7 +34,7 @@ class CommentSent implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('post-'.$this->comment->post_id);
+        return new PresenceChannel('post-'.$this->comment->post_id);
     }
 
     public function broadcastWith()

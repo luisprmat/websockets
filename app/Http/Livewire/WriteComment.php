@@ -12,6 +12,37 @@ class WriteComment extends Component
 
     public $newComment = '';
 
+    public $user;
+
+    public function getListeners()
+    {
+        return [
+            "echo-presence:post-{$this->post->id},here" => 'here',
+            "echo-presence:post-{$this->post->id},joining" => 'joining',
+            "echo-presence:post-{$this->post->id},leaving" => 'leaving',
+        ];
+    }
+
+    public function here($users)
+    {
+        $this->emit('here', $users);
+    }
+
+    public function joining($user)
+    {
+        $this->emit('join', $user);
+    }
+
+    public function leaving($user)
+    {
+        $this->emit('leave', $user);
+    }
+
+    public function writing($user)
+    {
+        $this->user = $user;
+    }
+
     public function store()
     {
         $this->validate([
@@ -27,13 +58,14 @@ class WriteComment extends Component
 
         $this->reset('newComment');
 
-        // broadcast(new CommentSent($comment))->toOthers();
-        broadcast(new CommentSent($comment));
+        broadcast(new CommentSent($comment))->toOthers();
         $this->emitTo('show-comments', 'comment-added');
     }
 
     public function render()
     {
-        return view('livewire.write-comment');
+        return view('livewire.write-comment', [
+            'postId' => $this->post->id
+        ]);
     }
 }

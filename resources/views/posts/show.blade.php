@@ -39,16 +39,21 @@
             </div>
         </div>
 
-        {{-- @push('events')
-            @php
-                $channel = "post-{$post->id}";
-            @endphp
+        @push('events')
             <script>
-                Echo.channel('{{ $channel }}')
-                    .listen('CommentSent', comment => {
-                        Livewire.emitTo('show-comments', 'comment-added-from-network', comment)
-                    })
+                Livewire.on('here', users => {
+                    console.log('Here')
+                    console.log(users)
+                })
+                Livewire.on('join', user => {
+                    console.log('Joining')
+                    console.log(user)
+                })
+                Livewire.on('leave', user => {
+                    console.log('Leaving')
+                    console.log(user)
+                })
             </script>
-        @endpush --}}
+        @endpush
     </div>
 </x-app-layout>
