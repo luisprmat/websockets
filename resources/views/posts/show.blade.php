@@ -10,7 +10,7 @@
             <div class="p-4 bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <h1 class="text-2xl mb-2">{{ $post->title }}</h1>
                 <p class="text-sm text-gray-500">
-                    {{ $post->updated_at }}
+                    {{ $post->updated_at->format('M d, Y') }}
                     <span class="text-gray-700 italic">Por {{ $post->user->name }}</span>
                     @if ($post->published)
                         <span

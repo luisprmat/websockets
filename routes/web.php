@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Livewire\PostsList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,5 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware(['auth:sanctum', 'verified'])->group(function () {});
 
 Route::view('/', 'dashboard')->name('dashboard');
-Route::get('posts/{post}', [PostController::class, 'show']);
+Route::get('posts', PostsList::class)->name('posts.index');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
